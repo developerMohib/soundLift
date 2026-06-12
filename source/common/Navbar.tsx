@@ -2,11 +2,11 @@ import Link from 'next/link';
 import Logo from './Logo';
 
 const navItems = [
+   { label: 'Home', href: '/' },
    { label: 'Services', href: '#services' },
    { label: 'How It Works', href: '#how-it-works' },
    { label: 'Pricing', href: '#pricing' },
-   { label: 'Results', href: '#results' },
-   { label: 'Blog', href: '#blog' },
+   { label: 'Results', href: '#results' }
 ];
 
 export default function Navbar() {
@@ -34,7 +34,7 @@ export default function Navbar() {
 
             {/* CTA */}
             <Link
-               href="#pricing"
+               href="/book"
                className="rounded-full bg-red-500 px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
             >
                Start Your Track

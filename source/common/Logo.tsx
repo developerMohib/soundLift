@@ -5,8 +5,9 @@ const Logo = () => {
     return (
         <Link
             href="/"
-            className="flex items-center gap-2 transition-opacity hover:opacity-90"
+            className="flex items-center gap-3 transition-opacity hover:opacity-90"
         >
+            {/* Logo */}
             <div className="relative h-10 w-10 overflow-hidden rounded-lg">
                 <Image
                     src="/soundLift.jpg"
@@ -17,11 +18,15 @@ const Logo = () => {
                 />
             </div>
 
+            {/* Text */}
             <div className="flex flex-col leading-none">
-                <span className="text-xl font-bold tracking-tight text-black">
+                
+                {/* FIRE TEXT */}
+                <span className="text-xl font-bold tracking-tight fire-text">
                     SoundLift
                 </span>
-                <span className="text-xs text-slate-900">
+
+                <span className="text-xs text-slate-900 fire-subtext">
                     Music Promotion
                 </span>
             </div>

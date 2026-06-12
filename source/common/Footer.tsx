@@ -18,10 +18,10 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Navigation</h3>
                         <ul className="space-y-2 text-slate-900">
-                            <li><Link href="/">Home</Link></li>
-                            <li><Link href="/services">Services</Link></li>
-                            <li><Link href="/pricing">Pricing</Link></li>
-                            <li><Link href="/blog">Blog</Link></li>
+                            <li><Link href="#home">Home</Link></li>
+                            <li><Link href="#services">Services</Link></li>
+                            <li><Link href="#pricing">Pricing</Link></li>
+                            <li><Link href="#results">Results</Link></li>
                         </ul>
                     </div>
 
@@ -29,10 +29,10 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Important Links</h3>
                         <ul className="space-y-2 text-slate-900">
-                            <li><Link href="/about">About Us</Link></li>
-                            <li><Link href="/contact">Contact</Link></li>
-                            <li><Link href="/faq">FAQ</Link></li>
-                            <li><Link href="/privacy">Privacy Policy</Link></li>
+                            <li><Link href="#about">About Us</Link></li>
+                            <li><Link href="#contact">Contact</Link></li>
+                            <li><Link href="#faq">FAQ</Link></li>
+                            <li><Link target='_blank' href="privacy-policy">Privacy Policy</Link></li>
                         </ul>
                     </div>
 

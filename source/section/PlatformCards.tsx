@@ -1,48 +1,63 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const platforms = [
-    {
-        name: 'Spotify',
-        logo: '/Spotify-Logo.png',
-    },
-    {
-        name: 'Apple Music',
-        logo: '/apple-music-logo.png',
-    },
-    {
-        name: 'YouTube Music',
-        logo: '/YouTube-Music-Logo.jpg',
-    },
-    {
-        name: 'SoundCloud',
-        logo: '/SoundCloud-Logo.png',
-    },
-    {
-        name: 'TikTok',
-        logo: '/TikTok-Logo.jpg',
-    },
+    { name: 'Spotify', logo: '/Spotify-Logo.png' },
+    { name: 'Apple Music', logo: '/apple-music-logo.png' },
+    { name: 'YouTube Music', logo: '/YouTube-Music-Logo.jpg' },
+    { name: 'SoundCloud', logo: '/SoundCloud-Logo.png' },
+    { name: 'TikTok', logo: '/TikTok-Logo.jpg' },
 ];
+
+const container = {
+    hidden: {},
+    show: {
+        transition: {
+            staggerChildren: 0.12,
+        },
+    },
+};
+
+const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+};
 
 const PlatformCards = () => {
     return (
-        <section className="py-16 bg-white text-slate-900">
+        <section className="text-slate-900 py-20">
             <div className="max-w-7xl mx-auto px-6">
 
-                {/* Label */}
-                <p className="text-sm text-slate-500 mb-6 text-center">
+                {/* Title */}
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-10 text-center"
+                >
                     Trusted by artists promoted on
-                </p>
+                </motion.p>
 
-                {/* Cards Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-
+                {/* Platform Cards */}
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.2 }}
+                    className="grid grid-cols-2 md:grid-cols-5 gap-6"
+                >
                     {platforms.map((platform, index) => (
-                        <div
+                        <motion.div
                             key={index}
+                            variants={item}
+                            whileHover={{ y: -6, scale: 1.03 }}
+                            transition={{ type: "spring", stiffness: 200 }}
                             className="group rounded-2xl border border-slate-200 bg-white p-6 flex flex-col items-center justify-center gap-3 shadow-sm hover:shadow-md hover:border-red-500 transition"
                         >
-                            {/* Logo */}
                             <div className="relative w-12 h-12">
                                 <Image
                                     src={platform.logo}
@@ -52,18 +67,21 @@ const PlatformCards = () => {
                                 />
                             </div>
 
-                            {/* Name */}
                             <p className="text-sm font-semibold text-slate-900 group-hover:text-red-500 transition">
                                 {platform.name}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
+                </motion.div>
 
-                </div>
-
-                {/* Optional stats row */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 text-center">
-
+                {/* Stats */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 text-center"
+                >
                     <div>
                         <h3 className="text-3xl font-extrabold text-red-500">
                             8,500+
@@ -99,8 +117,8 @@ const PlatformCards = () => {
                             Client satisfaction
                         </p>
                     </div>
+                </motion.div>
 
-                </div>
             </div>
         </section>
     );

@@ -1,3 +1,8 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+
 export const services = [
     {
         id: 1,
@@ -65,14 +70,33 @@ export const services = [
     },
 ];
 
+const container = {
+    hidden: {},
+    show: {
+        transition: {
+            staggerChildren: 0.12,
+        },
+    },
+};
+
+const card = {
+    hidden: { opacity: 0, y: 25, scale: 0.97 },
+    show: { opacity: 1, y: 0, scale: 1 },
+};
 
 const ServiceSection = () => {
     return (
-        <section className="py-20 bg-white text-slate-900">
+        <section id="services" className="py-20 bg-white text-slate-900">
             <div className="max-w-7xl mx-auto px-6">
 
-                {/* Heading Block */}
-                <div className="max-w-3xl mb-14">
+                {/* Heading */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6 }}
+                    className="max-w-3xl mb-14"
+                >
                     <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
                         Everything your music career needs
                     </h2>
@@ -80,14 +104,22 @@ const ServiceSection = () => {
                     <p className="mt-4 text-slate-600 text-base md:text-lg leading-relaxed">
                         From first release to full-scale fanbase — we cover every channel of music promotion under one roof.
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.2 }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
                     {services.map((service) => (
-                        <div
+                        <motion.div
                             key={service.id}
+                            variants={card}
+                            whileHover={{ y: -6, scale: 1.02 }}
+                            transition={{ type: "spring", stiffness: 200 }}
                             className="group rounded-2xl border border-slate-200 p-6 bg-white hover:border-red-500 hover:shadow-md transition"
                         >
                             {/* Badge */}
@@ -109,10 +141,10 @@ const ServiceSection = () => {
                             <p className="text-sm text-slate-600 leading-relaxed">
                                 {service.description}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
+                </motion.div>
 
-                </div>
             </div>
         </section>
     );

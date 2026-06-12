@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #e70f0f;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fire text animation */
+.fire-text {
+  background: linear-gradient(
+    90deg,
+    #e30f0f,
+    #c80000,
+    #2600ff,
+    #00ff33
+  );
+  background-size: 300%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fireMove 2s linear infinite;
+  text-shadow: 0 0 10px rgba(255, 60, 0, 0.4);
+}
+.fire-text {
+  filter: drop-shadow(0 0 6px rgba(255, 80, 0, 0.6));
+}
+
+.fire-subtext {
+  background: linear-gradient(
+    90deg,
+    #ff3b3b,
+    #ff7a00,
+    #ff3b3b
+  );
+  background-size: 200%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fireMove 3s linear infinite;
+  opacity: 0.9;
+}
+
+/* Animation */
+@keyframes fireMove {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
 }
