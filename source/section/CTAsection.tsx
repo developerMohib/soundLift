@@ -52,14 +52,14 @@ const FinalCTA = () => {
                     className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
                 >
                     <Link
-                        href="/submit"
+                        href="/book"
                         className="px-8 py-3 rounded-lg bg-red-500 hover:bg-red-600 text-white font-semibold transition"
                     >
                         Submit your track now
                     </Link>
 
                     <Link
-                        href="/contact"
+                        href="#contact"
                         className="px-8 py-3 rounded-lg border border-slate-300 hover:border-red-500 text-slate-900 font-semibold transition"
                     >
                         Talk to our team first

@@ -12,12 +12,6 @@ SoundLift is a modern **music promotion platform** built for independent artists
 
 ---
 
-## 📸 Preview
-
-![SoundLift Preview](./public/soundLift.png)
-
----
-
 ## ✨ Features
 
 - 🎧 Spotify playlist pitching
@@ -59,3 +53,8 @@ npm run dev
 ```
 http://localhost:3000
 ```
+---
+
+## 📸 Preview
+
+![SoundLift Preview](./public/soundLift.png)

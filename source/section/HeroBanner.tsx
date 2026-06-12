@@ -54,14 +54,14 @@ const HeroBanner = () => {
                         className="flex flex-col sm:flex-row gap-4 mt-4"
                     >
                         <Link
-                            href="/get-started"
+                            href="/book"
                             className="px-6 py-3 rounded-lg bg-red-500 hover:bg-red-600 transition font-semibold text-white"
                         >
                             Submit your track
                         </Link>
 
                         <Link
-                            href="/services"
+                            href="#services"
                             className="px-6 py-3 rounded-lg border border-slate-300 hover:border-slate-500 transition text-slate-900 font-medium"
                         >
                             Explore Services

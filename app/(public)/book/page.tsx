@@ -6,38 +6,39 @@ const BookingPage = () => {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoading(true);
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const form = e.currentTarget; // ✅ save reference early
+    const form = e.currentTarget;
 
-        const formData = new FormData(form);
+    setLoading(true);
 
-        const data = {
-            name: formData.get("name") as string,
-            email: formData.get("email") as string,
-            service: formData.get("service") as string,
-            message: formData.get("message") as string,
-        };
+    const formData = new FormData(form);
 
-        const res = await fetch("/api/book", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-        });
-
-        setLoading(false);
-
-        if (res.ok) {
-            setSuccess(true);
-            form.reset();
-
-            setTimeout(() => {
-                setSuccess(false);
-            }, 1000);
-        }
+    const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        subject: formData.get("subject"),
+        message: formData.get("message"),
     };
+
+    const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+
+    setLoading(false);
+
+    if (res.ok) {
+        setSuccess(true);
+        form.reset();
+
+        setTimeout(() => {
+            setSuccess(false);
+        }, 1500);
+    }
+};
     return (
         <section className="py-20 bg-white text-slate-900">
             <div className="max-w-3xl mx-auto px-6">

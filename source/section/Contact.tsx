@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const fadeUp = {
@@ -9,6 +9,39 @@ const fadeUp = {
 };
 
 const ContactSection = () => {
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const formData = new FormData(e.currentTarget);
+
+        const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            subject: formData.get("subject"),
+            message: formData.get("message"),
+        };
+
+        const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+        });
+
+        setLoading(false);
+
+        if (res.ok) {
+            setSuccess(true);
+            e.currentTarget.reset();
+
+            setTimeout(() => {
+                setSuccess(false);
+            }, 2000);
+        }
+    };
     return (
         <section id="contact" className="py-24 bg-white text-slate-900">
             <div className="max-w-7xl mx-auto px-6">
@@ -66,40 +99,40 @@ const ContactSection = () => {
                     >
                         <h3 className="text-xl font-bold mb-6">Send us a message</h3>
 
-                        <form className="space-y-4">
+                        <form onSubmit={handleSubmit} className="space-y-4">
 
-                            <div>
-                                <label className="text-sm font-medium">Your name</label>
-                                <input className="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-red-500" />
-                            </div>
+                            <input name="name" placeholder="Your name" className="w-full border p-3 rounded-lg" required />
 
-                            <div>
-                                <label className="text-sm font-medium">Your email address</label>
-                                <input type="email" className="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-red-500" />
-                            </div>
+                            <input name="email" type="email" placeholder="Your email" className="w-full border p-3 rounded-lg" required />
 
-                            <div>
-                                <label className="text-sm font-medium">Subject</label>
-                                <select className="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-red-500">
-                                    <option>General</option>
-                                    <option>Pricing</option>
-                                    <option>Partnership</option>
-                                    <option>Press</option>
-                                </select>
-                            </div>
+                            <select name="subject" className="w-full border p-3 rounded-lg" required>
+                                <option>General</option>
+                                <option>Pricing</option>
+                                <option>Partnership</option>
+                                <option>Press</option>
+                            </select>
 
-                            <div>
-                                <label className="text-sm font-medium">Message</label>
-                                <textarea rows={4} className="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:border-red-500" />
-                            </div>
+                            <textarea
+                                name="message"
+                                rows={4}
+                                placeholder="Message"
+                                className="w-full border p-3 rounded-lg"
+                                required
+                            />
 
                             <button
                                 type="submit"
-                                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-lg transition"
+                                disabled={loading}
+                                className="w-full bg-red-500 text-white py-3 rounded-lg"
                             >
-                                Send message
+                                {loading ? "Sending..." : "Send message"}
                             </button>
                         </form>
+                        {success && (
+                            <p className="mb-6 text-green-600 font-medium">
+                                ✅ Message sent successfully!
+                            </p>
+                        )}
                     </motion.div>
 
                 </div>
